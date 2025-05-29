@@ -28,6 +28,7 @@ app.post("/github-hooks", (req, res)=>{
 
         }).catch((error)=>{
             res.status(500).send("Something went wrong");
+            console.log(error);
 
         })
      }
