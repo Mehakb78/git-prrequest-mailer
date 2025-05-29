@@ -12,7 +12,7 @@ app.use(express.json({
     }
 }));
 
-app.post("/github-hooks", (req, res)=>{
+app.post("/github-webhook", (req, res)=>{
      if(!verifySignature(req)){
          res.status(403).send("Not Authorized");
      }
