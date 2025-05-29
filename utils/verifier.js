@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { config } from "./config";
+import { config } from "./config.js";
 
 export const verifySignature = (req)=>{
     const signature = req.headers['x-hub-signature-256'];
