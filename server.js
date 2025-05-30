@@ -13,14 +13,15 @@ app.use(express.json({
 }));
 
 app.post("/github-webhook", (req, res)=>{
-    console.log("Request for webhool is recieved", req.body.action);
      if(!verifySignature(req)){
          res.status(403).send("Not Authorized");
      }
-     const event = req.headers['x-github-event'];
-     if(event === "pull_request" && req.body.action ==="opened"){
+
+     if(req.body.action === "opened"){
         const pullRequest = req.body.pull_request;
         const repo = req.body.repository.full_name;
+
+        console.log("Pull request opened:", pullRequest.title, repo);
         const subject = `New Pull request for ${repo}`
         const desc = `A pull request has  been submitted by ${pullRequest.user.name}`
         sendPRrequestMail([config.REVIEWER_EMAIL], subject, desc ).then(()=>{
