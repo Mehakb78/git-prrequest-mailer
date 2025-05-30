@@ -32,9 +32,10 @@ app.post("/github-webhook", (req, res)=>{
             console.log(error);
 
         })
+     }else{
+       res.status(200).send("Webhook received successfully");
      }
-
-     res.status(200).send("Webhook received successfully");
+     
 })
 
 
