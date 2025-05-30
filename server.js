@@ -13,13 +13,12 @@ app.use(express.json({
 }));
 
 app.post("/github-webhook", (req, res)=>{
-    console.log("Request for webhool is recieved");
+    console.log("Request for webhool is recieved", req.body.action);
      if(!verifySignature(req)){
          res.status(403).send("Not Authorized");
      }
      const event = req.headers['x-github-event'];
-     console.log("inside here req.body", req.body);
-     if(event === "pull_request" && req.body.action ==="open"){
+     if(event === "pull_request" && req.body.action ==="opened"){
         const pullRequest = req.body.pull_request;
         const repo = req.body.repository.full_name;
         const subject = `New Pull request for ${repo}`
@@ -33,6 +32,8 @@ app.post("/github-webhook", (req, res)=>{
 
         })
      }
+
+     res.status(200).send("Webhook received successfully");
 })
 
 
