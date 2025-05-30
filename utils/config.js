@@ -4,6 +4,7 @@ export const config = {
     PORT : process.env.PORT,
     GIT_WEBHOOK_SECRET : process.env.GIT_WEBHOOK_SECRET,
     EMAIL : process.env.EMAIL,
-    PASSWARD : process.env.PASSWARD
+    PASSWORD : process.env.PASSWORD,
+    REVIEWER_EMAIL: process.env.REVIEWER_EMAIL
 }
 
