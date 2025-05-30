@@ -13,6 +13,7 @@ app.use(express.json({
 }));
 
 app.post("/github-webhook", (req, res)=>{
+    console.log("Request for webhool is recieved");
      if(!verifySignature(req)){
          res.status(403).send("Not Authorized");
      }
